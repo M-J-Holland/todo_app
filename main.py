@@ -1,16 +1,10 @@
-# This is a sample Python script.
+# Todoapp
+message = "Enter 'add', 'edit', 'complete' or 'quit'"
+todos = []
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+while True:
+    #get user input
+    user_input = input(f"{message}: ").lower().strip()
+    if user_input == 'add' or user_input.startswith('a'):
+        todo = input("Enter a todo to add: ")
+        todos.append(todo)
