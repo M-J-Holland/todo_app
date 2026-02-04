@@ -8,15 +8,20 @@ while True:
 
     # Add feature
     if user_input == 'add' or user_input.startswith('a'):
-        todo = input("Enter a todo to add: ")
-        todos.append(todo)
+        while True:
+            if not todos:
+                todo = input("Enter a todo to add, type 'done' when you are finished: ").lower().strip()
+            else:
+                todo = input("Enter another todo, type 'done' when you are finished: ").lower().strip()
+            if todo == 'done':
+                break
+            todos.append(todo)
 
     # Show feature
     elif user_input == "show" or user_input.startswith('s'):
         if not todos:
             print("No todos to show, add some first them come back to see them.")
             continue
-
         else:
             for index, todo in enumerate(todos, start=1):
                 print(f"{index}. {todo}")
