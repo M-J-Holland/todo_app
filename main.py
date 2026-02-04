@@ -39,3 +39,28 @@ while True:
                 todos[todo_to_edit] = edited_todo
         else:
             print("Invalid todo number, please try again.")
+
+    # Complete feature
+    elif user_input == 'complete' or user_input.startswith('c'):
+        if not todos:
+            print("No todos to complete, add some first them come back to complete them.")
+            continue
+        todo_to_complete = input("Enter the number for the todo you would like to complete: ")
+        if todo_to_complete.isdigit():
+            todo_to_complete = int(todo_to_complete) - 1
+            if todo_to_complete < 0 or todo_to_complete >= len(todos):
+                print("Invalid todo number, please try again.")
+                continue
+            else:
+                completed_todo = todos.pop(todo_to_complete)
+
+        else:
+            print("Invalid todo number, please try again.")
+
+    # Quit feature
+    elif user_input == 'quit' or user_input.startswith('q'):
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid input, please try again.")
