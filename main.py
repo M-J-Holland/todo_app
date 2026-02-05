@@ -1,33 +1,52 @@
 # Todoapp
+import os
+
 message = "Enter 'add', 'show', 'edit', 'complete' or 'quit'"
-todos = []
+
+
+def read_todos():
+    if os.path.exists("todos.txt"):
+        with open("todos.txt", "r") as file:
+            return file.readlines()
+    return []
+
+
+def write_todos(local_todos):
+    with open("todos.txt", "w") as file:
+        file.writelines(local_todos)
+
 
 while True:
     # get user input
     user_input = input(f"{message}: ").lower().strip()
 
     # Add feature
-    if user_input == 'add' or user_input.startswith('a'):
+    if user_input == 'add' or user_input.startswith('ad'):
+        todos = read_todos()
         while True:
             if not todos:
-                todo = input("Enter a todo to add, type 'done' when you are finished: ").lower().strip()
+                todo = input("Enter a todo to add, type 'done' when you are finished: ").strip() + "\n"
             else:
-                todo = input("Enter another todo, type 'done' when you are finished: ").lower().strip()
-            if todo == 'done':
+                todo = input("Enter another todo, type 'done' when you are finished: ").strip() + "\n"
+            if todo.strip().lower() == 'done':
+                write_todos(todos)
                 break
             todos.append(todo)
 
+
     # Show feature
-    elif user_input == "show" or user_input.startswith('s'):
+    elif user_input == "show" or user_input.startswith('sh'):
+        todos = read_todos()
         if not todos:
             print("No todos to show, add some first them come back to see them.")
             continue
         else:
             for index, todo in enumerate(todos, start=1):
-                print(f"{index}. {todo}")
+                print(f"{index}. {todo.strip()}")
 
     # Edit feature
-    elif user_input == 'edit' or user_input.startswith('e'):
+    elif user_input == 'edit' or user_input.startswith('ed'):
+        todos = read_todos()
         if not todos:
             print("No todos to edit, add some first them come back to edit them.")
             continue
@@ -41,12 +60,14 @@ while True:
                 continue
             else:
                 edited_todo = input("Enter your todo edit: ")
-                todos[todo_to_edit] = edited_todo
+                todos[todo_to_edit] = edited_todo + "\n"
+                write_todos(todos)
         else:
             print("Invalid todo number, please try again.")
 
     # Complete feature
-    elif user_input == 'complete' or user_input.startswith('c'):
+    elif user_input == 'complete' or user_input.startswith('com'):
+        todos = read_todos()
         if not todos:
             print("No todos to complete, add some first them come back to complete them.")
             continue
@@ -57,7 +78,8 @@ while True:
                 print("Invalid todo number, please try again.")
                 continue
             else:
-                completed_todo = todos.pop(todo_to_complete)
+                todos.pop(todo_to_complete)
+                write_todos(todos)
 
         else:
             print("Invalid todo number, please try again.")
