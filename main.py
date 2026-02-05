@@ -38,7 +38,7 @@ while True:
     elif user_input == "show" or user_input.startswith('sh'):
         todos = read_todos()
         if not todos:
-            print("No todos to show, add some first them come back to see them.")
+            print("No todos to show, add some first, them come back to see them.")
             continue
         else:
             for index, todo in enumerate(todos, start=1):
@@ -48,7 +48,7 @@ while True:
     elif user_input == 'edit' or user_input.startswith('ed'):
         todos = read_todos()
         if not todos:
-            print("No todos to edit, add some first them come back to edit them.")
+            print("No todos to edit, add some first, them come back to edit them.")
             continue
         todo_to_edit = input("Enter the number for the todo you would like to edit: ")
         # checks to see if todo_to_edit is a valid number
@@ -69,7 +69,7 @@ while True:
     elif user_input == 'complete' or user_input.startswith('com'):
         todos = read_todos()
         if not todos:
-            print("No todos to complete, add some first them come back to complete them.")
+            print("No todos to complete, add some first, them come back to complete them.")
             continue
         todo_to_complete = input("Enter the number for the todo you would like to complete: ")
         if todo_to_complete.isdigit():
